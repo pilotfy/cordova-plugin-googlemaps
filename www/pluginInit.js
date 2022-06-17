@@ -124,23 +124,23 @@ function pluginInit() {
   //--------------------------------------------
   var anotherBackbuttonHandler = null;
 
-  function onBackButton(e) {
+  // function onBackButton(e) {
+  //
+  //   // Check DOM tree for new page
+  //   cordova.fireDocumentEvent('plugin_touch', {
+  //     force: true
+  //   });
+  //
+  //   if (anotherBackbuttonHandler) {
+  //     // anotherBackbuttonHandler must handle the page moving transaction.
+  //     // The plugin does not take care anymore if another callback is registered.
+  //     anotherBackbuttonHandler(e);
+  //   } else {
+  //     cordova_exec(null, null, 'CordovaGoogleMaps', 'backHistory', []);
+  //   }
+  // }
 
-    // Check DOM tree for new page
-    cordova.fireDocumentEvent('plugin_touch', {
-      force: true
-    });
-
-    if (anotherBackbuttonHandler) {
-      // anotherBackbuttonHandler must handle the page moving transaction.
-      // The plugin does not take care anymore if another callback is registered.
-      anotherBackbuttonHandler(e);
-    } else {
-      cordova_exec(null, null, 'CordovaGoogleMaps', 'backHistory', []);
-    }
-  }
-
-  document.addEventListener('backbutton', onBackButton);
+  // document.addEventListener('backbutton', onBackButton);
 
   var _org_addEventListener = document.addEventListener;
   var _org_removeEventListener = document.removeEventListener;
@@ -150,9 +150,9 @@ function pluginInit() {
       _org_addEventListener.apply(this, args);
       return;
     }
-    if (!anotherBackbuttonHandler) {
-      anotherBackbuttonHandler = callback;
-    }
+    // if (!anotherBackbuttonHandler) {
+    //   anotherBackbuttonHandler = callback;
+    // }
   };
   document.removeEventListener = function (eventName, callback) {
     var args = Array.prototype.slice.call(arguments, 0);
@@ -160,9 +160,9 @@ function pluginInit() {
       _org_removeEventListener.apply(this, args);
       return;
     }
-    if (anotherBackbuttonHandler === callback) {
-      anotherBackbuttonHandler = null;
-    }
+    // if (anotherBackbuttonHandler === callback) {
+    //   anotherBackbuttonHandler = null;
+    // }
   };
 
 }
